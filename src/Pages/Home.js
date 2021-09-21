@@ -32,21 +32,21 @@ export default class Home extends Component {
     this.getListCart();
   }
 
-  // componentDidUpdate = (prevState) => {
-  //   // console.log(prevState);
-  //   if (this.state.listCart !== prevState.listCart) {
-  //     axios
-  //       .get(API_URL + "keranjangs")
-  //       .then((res) => {
-  //         // console.log(res);
-  //         const listCart = res.data;
-  //         this.setState({ listCart });
-  //       })
-  //       .catch((error) => {
-  //         console.log("Ini Error nya Mas : ", error);
-  //       });
-  //   }
-  // };
+  componentDidUpdate = (prevState) => {
+    // console.log(prevState);
+    if (this.state.listCart !== prevState.listCart) {
+      axios
+        .get(API_URL + "keranjangs")
+        .then((res) => {
+          // console.log(res);
+          const listCart = res.data;
+          this.setState({ listCart });
+        })
+        .catch((error) => {
+          console.log("Ini Error nya Mas : ", error);
+        });
+    }
+  };
 
   getListCart = () => {
     axios
