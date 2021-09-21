@@ -29,6 +29,26 @@ export default class Home extends Component {
         console.log("Ini Error nya Mas : ", error);
       });
 
+    this.getListCart();
+  }
+
+  // componentDidUpdate = (prevState) => {
+  //   // console.log(prevState);
+  //   if (this.state.listCart !== prevState.listCart) {
+  //     axios
+  //       .get(API_URL + "keranjangs")
+  //       .then((res) => {
+  //         // console.log(res);
+  //         const listCart = res.data;
+  //         this.setState({ listCart });
+  //       })
+  //       .catch((error) => {
+  //         console.log("Ini Error nya Mas : ", error);
+  //       });
+  //   }
+  // };
+
+  getListCart = () => {
     axios
       .get(API_URL + "keranjangs")
       .then((res) => {
@@ -39,22 +59,6 @@ export default class Home extends Component {
       .catch((error) => {
         console.log("Ini Error nya Mas : ", error);
       });
-  }
-
-  componentDidUpdate = (prevState) => {
-    // console.log(prevState);
-    if (this.state.listCart !== prevState.listCart) {
-      axios
-        .get(API_URL + "keranjangs")
-        .then((res) => {
-          // console.log(res);
-          const listCart = res.data;
-          this.setState({ listCart });
-        })
-        .catch((error) => {
-          console.log("Ini Error nya Mas : ", error);
-        });
-    }
   };
 
   changeCategory = (value) => {
@@ -89,7 +93,8 @@ export default class Home extends Component {
           axios
             .post(API_URL + "keranjangs", productCart)
             .then((res) => {
-              // console.log(res);
+              console.log(res);
+              this.getListCart();
               swal({
                 title: "Product Added to Your Cart",
                 text: productCart.product.nama,
@@ -157,7 +162,7 @@ export default class Home extends Component {
                   ))}
               </Row>
             </Col>
-            <Cart listCart={listCart} />
+            <Cart listCart={listCart} {...this.props} />
           </Row>
         </Container>
       </div>

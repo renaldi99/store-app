@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Col, ListGroup, Row, Badge } from "react-bootstrap";
 import { numberWithCommas } from "../Utils/Comma";
+import TotalPay from "./TotalPay";
 
 export default class Cart extends Component {
   render() {
@@ -36,6 +37,7 @@ export default class Cart extends Component {
             ))}
           </ListGroup>
         )}
+        <TotalPay listCart={listCart} {...this.props} />
       </Col>
     );
   }
